@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+
+        input {
+            width: 200px;
+
+            border: 1px solid pink;
+            outline: none;
+            resize: none;
+        }
+
+        table {
+            width: 500px;
+            margin: 100px auto;
+            border-collapse: collapse;
+            text-align: center;
+        }
+
+        td,
+        th {
+            border: 1px solid #333;
+        }
+
+        thead tr {
+            height: 40px;
+            background-color: #ccc;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="text" value='姓名' id="input1">
+    <input type="text" value='科目' id="input2">
+    <input type="text" value='成绩' id="input3">
+    <button id="ti">提交</button>
+    <input type="text" value='序号' id="input4">
+    <button id="xiu">修改</button>
+    <table cellspacing="0">
+        <thead>
+            <tr>
+                <th>姓名</th>
+                <th>科目</th>
+                <th>成绩</th>
+                <th>操作</th>
+
+            </tr>
+        </thead>
+        <tbody>
+
+        </tbody>
+    </table>
+    <script>
+        // 增
+
+
+
+
+        var text1 = document.querySelector('#input1');
+        var text2 = document.querySelector('#input2');
+        var text3 = document.querySelector('#input3');
+        var text4 = document.querySelector('#input4');
+        var btn = document.querySelector('#ti');
+        var btn1 = document.querySelector('#xiu');
+        var tbody = document.querySelector('tbody');
+        text1.onfocus = function () {
+
+            if (this.value === '姓名') {
+                this.value = '';
+            }
+
+            this.style.color = '#333';
+        }
+
+        text1.onblur = function () {
+
+            if (this.value === '') {
+                this.value = '姓名';
+            }
+
+            this.style.color = '#999';
+        }
+        text2.onfocus = function () {
+
+            if (this.value === '科目') {
+                this.value = '';
+            }
+
+            this.style.color = '#333';
+        }
+
+        text2.onblur = function () {
+
+            if (this.value === '') {
+                this.value = '科目';
+            }
+
+            this.style.color = '#999';
+        }
+        text3.onfocus = function () {
+
+            if (this.value === '成绩') {
+                this.value = '';
+            }
+
+            this.style.color = '#333';
+        }
+
+        text3.onblur = function () {
+
+            if (this.value === '') {
+                this.value = '成绩';
+            }
+
+            this.style.color = '#999';
+        }
+        text4.onfocus = function () {
+
+            if (this.value === '序号') {
+                this.value = '';
+            }
+
+            this.style.color = '#333';
+        }
+
+        text4.onblur = function () {
+
+            if (this.value === '') {
+                this.value = '序号';
+            }
+
+            this.style.color = '#999';
+        }
+
+        var data1 = {
+            name: null,
+            subject: null,
+            score: null
+        }
+        btn.onclick = function () {
+            data1.name = text1.value
+            data1.subject = text2.value
+            data1.score = text3.value
+            var tr = document.createElement('tr');
+            tbody.appendChild(tr);
+            for (var k in data1) {
+                var td = document.createElement('td');
+
+                td.innerHTML = data1[k];
+                tr.appendChild(td);
+                var td = document.createElement('td');
+
+            } td.innerHTML = '<a href="javascript:;">删除 </a>';
+            tr.appendChild(td);
+            var as = document.querySelectorAll('a');
+            for (var i = 0; i < as.length; i++) {
+                as[i].onclick = function () {
+                    // 删
+                    tbody.removeChild(this.parentNode.parentNode)
+                }
+            }
+
+
+        }
+        //修
+        btn1.onclick = function () {
+            var xuhao = text4.value - 1
+            data1.name = text1.value
+            data1.subject = text2.value
+            data1.score = text3.value
+
+
+            var i = 0;
+            for (var k in data1) {
+
+                tbody.children[xuhao].children[i].innerHTML = data1[k];
+                i++;
+
+
+            }
+
+        }
+
+    </script>
+</body>
+
+</html>
